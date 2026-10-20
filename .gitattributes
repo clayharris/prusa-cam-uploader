@@ -1,0 +1,16 @@
+# Store all text files with LF line endings and check them out with LF, on every OS.
+# This overrides any core.autocrlf setting on the Windows machine.
+* text=auto eol=lf
+
+# Explicit rules for files where CRLF would break the container.
+# These repeat the default above, but document intent and survive edits to the default.
+*.sh            text eol=lf
+Dockerfile      text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf
+.gitattributes  text eol=lf
+
+# Binary files: never convert or diff
+*.jpg           binary
+*.jpeg          binary
+*.png           binary
