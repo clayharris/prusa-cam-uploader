@@ -62,7 +62,8 @@ get_printer_state() {
 }
 
 state_is_active() {
-    case " $UPLOAD_STATES " in
+    states=$(printf '%s' "$UPLOAD_STATES" | tr ',' ' ')
+    case " $states " in
         *" $1 "*) return 0 ;;
     esac
     return 1
