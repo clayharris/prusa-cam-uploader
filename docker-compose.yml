@@ -1,0 +1,20 @@
+services:
+  prusa-cam-uploader:
+    build: .
+    image: prusa-cam-uploader:latest
+    container_name: prusa-cam-uploader
+    restart: unless-stopped
+    environment:
+      PRUSA_CONNECT_TOKEN: ${PRUSA_CONNECT_TOKEN}
+      PRUSA_CONNECT_FINGERPRINT: ${PRUSA_CONNECT_FINGERPRINT}
+      CAMERA_SNAPSHOT_URL: ${CAMERA_SNAPSHOT_URL}
+      CAMERA_AUTH_HEADER: ${CAMERA_AUTH_HEADER:-}
+      PRUSALINK_URL: ${PRUSALINK_URL:-}
+      PRUSALINK_PASSWORD: ${PRUSALINK_PASSWORD:-}
+      PRUSALINK_API_KEY: ${PRUSALINK_API_KEY:-}
+      UPLOAD_STATES: "PRINTING PAUSED ATTENTION"
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "3"
